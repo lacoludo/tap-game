@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { map } from 'rxjs/operators/map';
-import { Router } from '@angular/router';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
+import { Router } from "@angular/router";
 
 export interface UserDetails {
   _id: string;
@@ -29,13 +29,13 @@ export class AuthenticationService {
   constructor(private http: HttpClient, private router: Router) {}
 
   private saveToken(token: string): void {
-    localStorage.setItem('mean-token', token);
+    localStorage.setItem("mean-token", token);
     this.token = token;
   }
 
   private getToken(): string {
     if (!this.token) {
-      this.token = localStorage.getItem('mean-token');
+      this.token = localStorage.getItem("mean-token");
     }
     return this.token;
   }
@@ -44,7 +44,7 @@ export class AuthenticationService {
     const token = this.getToken();
     let payload;
     if (token) {
-      payload = token.split('.')[1];
+      payload = token.split(".")[1];
       payload = window.atob(payload);
       return JSON.parse(payload);
     } else {
@@ -61,13 +61,19 @@ export class AuthenticationService {
     }
   }
 
-  private request(method: 'post'|'get', type: 'login'|'register'|'profile', user?: TokenPayload): Observable<any> {
+  private request(
+    method: "post" | "get",
+    type: "login" | "register" | "profile",
+    user?: TokenPayload
+  ): Observable<any> {
     let base;
 
-    if (method === 'post') {
+    if (method === "post") {
       base = this.http.post(`/api/${type}`, user);
     } else {
-      base = this.http.get(`/api/${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
+      base = this.http.get(`/api/${type}`, {
+        headers: { Authorization: `Bearer ${this.getToken()}` }
+      });
     }
 
     const request = base.pipe(
@@ -83,20 +89,20 @@ export class AuthenticationService {
   }
 
   public register(user: TokenPayload): Observable<any> {
-    return this.request('post', 'register', user);
+    return this.request("post", "register", user);
   }
 
   public login(user: TokenPayload): Observable<any> {
-    return this.request('post', 'login', user);
+    return this.request("post", "login", user);
   }
 
   public profile(): Observable<any> {
-    return this.request('get', 'profile');
+    return this.request("get", "profile");
   }
 
   public logout(): void {
-    this.token = '';
-    window.localStorage.removeItem('mean-token');
-    this.router.navigateByUrl('/');
+    this.token = "";
+    window.localStorage.removeItem("mean-token");
+    this.router.navigateByUrl("/");
   }
 }
