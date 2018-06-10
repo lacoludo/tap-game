@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "mean-stack-authentication": {
+    "tap-game-client": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -47,18 +47,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "mean-stack-authentication:build"
+            "browserTarget": "tap-game-client:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "mean-stack-authentication:build:production"
+              "browserTarget": "tap-game-client:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "mean-stack-authentication:build"
+            "browserTarget": "tap-game-client:build"
           }
         },
         "test": {
@@ -86,7 +86,7 @@
         }
       }
     },
-    "mean-stack-authentication-e2e": {
+    "tap-game-client-e2e": {
       "root": "",
       "sourceRoot": "e2e",
       "projectType": "application",
@@ -95,7 +95,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "mean-stack-authentication:serve"
+            "devServerTarget": "tap-game-client:serve"
           }
         },
         "lint": {
@@ -108,7 +108,7 @@
       }
     }
   },
-  "defaultProject": "mean-stack-authentication",
+  "defaultProject": "tap-game-client",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",

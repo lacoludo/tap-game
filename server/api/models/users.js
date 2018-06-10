@@ -8,7 +8,11 @@ const userSchema = new mongoose.Schema({
     unique: true,
     required: true
   },
-  name: {
+  firstname: {
+    type: String,
+    required: true
+  },
+  lastname: {
     type: String,
     required: true
   },
@@ -42,7 +46,7 @@ userSchema.methods.generateJwt = () => {
       exp: parseInt(expiry.getTime() / 1000)
     },
     "MY_SECRET"
-  ); // DO NOT KEEP YOUR SECRET IN THE CODE!
+  );
 };
 
 mongoose.model("User", userSchema);

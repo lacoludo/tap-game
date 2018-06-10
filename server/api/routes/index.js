@@ -8,12 +8,14 @@ const auth = jwt({
 
 const ctrlProfile = require("./../controllers/profile");
 const ctrlAuth = require("./../controllers/authentication");
+var ctrlGame = require("./../controllers/game");
 
-// profile
 router.get("/profile", auth, ctrlProfile.profileRead);
 
-// authentication
 router.post("/register", ctrlAuth.register);
 router.post("/login", ctrlAuth.login);
+
+router.post("/savescore", ctrlGame.saveScore);
+router.get("/getscores", ctrlGame.getScores);
 
 module.exports = router;

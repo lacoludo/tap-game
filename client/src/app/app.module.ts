@@ -9,18 +9,15 @@ import { ProfileComponent } from "./profile/profile.component";
 import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
 import { HomeComponent } from "./home/home.component";
+import { GameComponent } from "./game/game.component";
 import { AuthenticationService } from "./authentication.service";
 import { AuthGuardService } from "./auth-guard.service";
+import { GameService } from "./game.service";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
-  { path: "login", component: LoginComponent },
-  { path: "register", component: RegisterComponent },
-  {
-    path: "profile",
-    component: ProfileComponent,
-    canActivate: [AuthGuardService]
-  }
+  { path: "me", component: ProfileComponent, canActivate: [AuthGuardService] },
+  { path: "tap", component: GameComponent, canActivate: [AuthGuardService] }
 ];
 
 @NgModule({
@@ -29,7 +26,8 @@ const routes: Routes = [
     ProfileComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    GameComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +35,7 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AuthenticationService, AuthGuardService],
+  providers: [AuthenticationService, AuthGuardService, GameService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,13 +1,14 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import { Router } from "@angular/router";
 
 export interface UserDetails {
   _id: string;
   email: string;
-  name: string;
+  firstname: string;
+  lastname: string;
   exp: number;
   iat: number;
 }
@@ -19,7 +20,8 @@ interface TokenResponse {
 export interface TokenPayload {
   email: string;
   password: string;
-  name?: string;
+  firstname?: string;
+  lastname?: string;
 }
 
 @Injectable()
